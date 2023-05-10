@@ -30,4 +30,23 @@ app.get('/pasien-detail/:id', async (req, res) => {
     }
 })
 
+app.put('/edit/:id', async (req, res) => {
+    try {        
+        const {id} = req.params
+        const {name, sex, religion, phone, address, nik} = req.body
+    
+        await pasien.update(
+            {name, sex, religion, phone, address, nik},
+            {where: {id}}
+        )
+
+        const updatedPasien = await pasien.findOne({ where: { id } });
+
+        res.status(200).json({message: `${updatedPasien.name} has been edited`})
+    } catch (err) {
+        // console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 app.listen(port, () => console.log(`Running on ${port}`))
