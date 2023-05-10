@@ -49,4 +49,21 @@ app.put('/edit/:id', async (req, res) => {
     }
 })
 
+app.delete('/delete/:id', async (req, res) => {
+    try {
+        const {id} = req.params
+        const deletePasien = await pasien.findOne({where: {id}})
+        
+        if(deletePasien){
+            await pasien.destroy({where: {id}})
+            res.status(200).json({message: `${deletePasien.name} has been delete from database`})
+        }else{
+            res.status(404).json({message: `Pasien Not Found`})
+        }
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 app.listen(port, () => console.log(`Running on ${port}`))
