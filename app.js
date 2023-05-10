@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.get('/pasien-list', async (req, res) => {
     try {
-        const data = await pasien.findAll()
+        const data = await pasien.findll()
         res.status(200).json(data)
     } catch (err) {
         res.status(500).json(err)
@@ -67,7 +67,7 @@ app.delete('/delete/:id', async (req, res) => {
         
         if(deletePasien){
             await pasien.destroy({where: {id}})
-            res.status(200).json({message: `${deletePasien.name} has been delete from database`})
+            res.status(200).json({message: `${deletePasien.name} has been deleted from database`})
         }else{
             res.status(404).json({message: `Pasien Not Found`})
         }
