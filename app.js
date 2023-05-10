@@ -15,6 +15,17 @@ app.get('/pasien-list', async (req, res) => {
     }
 })
 
+app.post('/add-pasien', async (req, res) => {
+    try {
+        const {name, sex, religion, phone, address, nik} = req.body
+        const addPasien = await pasien.create({name, sex, religion, phone, address, nik})
+        
+        res.status(201).json(addPasien)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
+
 app.get('/pasien-detail/:id', async (req, res) => {
     const {id} = req.params
 
