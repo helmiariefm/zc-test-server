@@ -12,5 +12,12 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "g1eTfICypVYtJoqF",
+    "database": "postgres",
+    "host": "db.xrgysvmunpebryzwcvqd.supabase.co",
+    "dialect": "postgres"
   }
 }
